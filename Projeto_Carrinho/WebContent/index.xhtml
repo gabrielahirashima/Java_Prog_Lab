@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" >
+
+<h:head>
+    <title>Prova 4</title>
+</h:head>
+
+<h:body>
+
+    <h:form id="barraDeFerramentas">
+        <p:toolbar style="background-color: #333;">
+            <p:toolbarGroup align="left">
+                <p:commandButton value="Adicionar Produtos ao Servidor" icon="ui-icon-plusthick" action="inserir-produto.xhtml" ajax="false" style="padding: 10px 10px"/>
+                <p:commandButton value="Buscar Produtos no Servidor" icon="ui-icon-zoomin" action="buscar-produtos.xhtml" ajax="false" style="padding: 10px 10px"/>
+                <p:commandButton value="Carrinho de Compras" icon="ui-icon-cart" action="carrinho-de-compras.xhtml" ajax="false" style="padding: 10px 10px"/>
+            </p:toolbarGroup>
+        </p:toolbar>
+    </h:form>
+
+    <div><ui:insert name="pagina" /></div>
+    
+
+</h:body>
+</html>

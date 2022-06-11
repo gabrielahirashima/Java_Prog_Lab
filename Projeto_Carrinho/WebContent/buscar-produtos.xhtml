@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<ui:composition 
+template="./index.xhtml"
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:f="http://xmlns.jcp.org/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="pagina">
+	
+			<h:form id="produtos">
+			
+			   <h:panelGrid columns="3" cellpadding="5" style="margin: 0 auto; padding: 10px">
+			   		<p:outputLabel for="input" value="Nome:"/>
+			   		<p:inputText id="input" value="#{produtoController.produto.nome}"/>
+	           		<p:commandButton update="produtos" value="Buscar"
+	                         action="#{produtoController.buscarPorNome}">
+	           		</p:commandButton>
+			   </h:panelGrid>
+	           
+	           <p:growl id="growl" />
+			   <p:dataTable id="tabelaProdutos" var="produto" 
+			   			value="#{produtoController.listaProdutos}" 
+			   			rendered="#{not empty produtoController.listaProdutos}" >
+			      
+			      <p:column headerText="Nome">
+			         <p:inputText id="nomeInput" value="#{produto.nome}"/>
+			      </p:column>
+			 
+			      <p:column headerText="Preco">
+			         <p:inputText id="precoInput" value="#{produto.preco}"/>
+			       </p:column>
+			 
+			       <p:column headerText="Quantidade">
+			         <p:inputText id="quantidadeInput" value="#{produto.quantidade}"/>
+			       </p:column>
+			 
+			       <p:column>
+	           	   		<p:commandButton update="tabelaProdutos" value="Remover Produto" icon="ui-icon-closethick"
+	                        action="#{produtoController.remover(produto)}"
+	                        styleClass="ui-priority-primary" style = "padding: 10px 10px;">
+	               		</p:commandButton>
+	        	   </p:column>
+	        	   <p:column>
+	        	   		<p:commandButton update="produtos:growl" value="Alterar Produto" icon="ui-icon-update"
+	                        action="#{produtoController.alterar(produto)}" style = "padding: 10px 10px;">
+	                        <f:ajax execute="@form" render="@form"/>
+	               		</p:commandButton>
+	        	   </p:column>
+	        	   <p:column>
+	        	   		<p:commandButton update="produtos:growl" value="Adicionar ao Carrinho" icon="ui-icon-check"
+	                        action="#{carrinhoController.adicionarCarrinho(produto)}">
+	               		</p:commandButton>
+	        	   </p:column>
+			</p:dataTable>
+		</h:form>
+		
+	</ui:define>
+
+</ui:composition>
